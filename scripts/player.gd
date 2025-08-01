@@ -9,8 +9,8 @@ signal coin_collected
 @export var movement_speed = 250
 @export var jump_strength = 7
 
-var movement_velocity: Vector3
-var rotation_direction: float = rotation.y
+var movement_velocity: float
+var movement_direction: float
 var gravity = 0
 
 var previously_floored = false
@@ -40,10 +40,9 @@ func _physics_process(delta):
 
 	var applied_velocity: Vector3
 
-	if Vector2(movement_velocity.x, movement_velocity.z).length() > 0:
-		print('movement_velocity', movement_velocity)
-		print('movement_velocity.angle()', Vector2(movement_velocity.x, movement_velocity.z).angle_to(Vector2(self.rotation.x, self.rotation.z)))
-	applied_velocity = velocity.lerp(movement_velocity, delta * 10)
+	if abs(movement_velocity) > 0:
+		var direction: Vector3 = Vector3(0, 0, movement_velocity).rotated(Vector3.UP, rotation.y)
+		applied_velocity = velocity.lerp(direction, delta * 10)
 	applied_velocity.y = -gravity
 
 	velocity = applied_velocity
@@ -51,17 +50,8 @@ func _physics_process(delta):
 
 	# Rotation
 
-	if Vector2(velocity.x, velocity.z).length() > 0:
-		print('Vector2(velocity.z, velocity.x)', Vector2(velocity.z, velocity.x))
-		print('Vector2(velocity.z, velocity.x).length()', Vector2(velocity.z, velocity.x).length())
-		print('velocity', velocity)
-		rotation_direction = Vector2(velocity.z, velocity.x).angle()
-#		rotation_direction = Vector2(velocity.x, velocity.z).angle_to(Vector2(rotation.x, -rotation.z))
-		rotation_direction = rotation_direction + PI
-		
-		print('rotation_direction', rotation_direction)
-
-	rotation.y = lerp_angle(rotation.y, rotation_direction, delta * 10)
+	if abs(movement_direction) > 0:
+		rotation.y = lerp_angle(rotation.y, rotation.y + movement_direction * 0.2, delta * 10)
 
 	# Falling/respawning
 
@@ -112,20 +102,8 @@ func handle_controls(delta):
 
 	# Movement
 
-	var input := Vector3.ZERO
-
-	input.x = Input.get_axis("move_left", "move_right")
-	input.z = Input.get_axis("move_forward", "move_back")
-
-	if (input != Vector3.ZERO):
-		print("input", input)
-		print("self.rotation_degrees", self.rotation_degrees)
-	input = input.rotated(Vector3.UP, self.rotation.y)
-	
-	if input.length() > 1:
-		input = input.normalized()
-
-	movement_velocity = input * movement_speed * delta
+	movement_velocity = Input.get_axis("move_forward", "move_back") * movement_speed * delta
+	movement_direction = Input.get_axis("move_right", "move_left") * movement_speed * delta
 
 	# Jumping
 
