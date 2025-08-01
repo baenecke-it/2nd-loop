@@ -1,6 +1,7 @@
 [gd_scene load_steps=28 format=4 uid="uid://qwb5yp3k3mta"]
 
 [ext_resource type="Script" uid="uid://de8b0iu4ncuiy" path="res://scripts/player.gd" id="3_036b0"]
+[ext_resource type="PackedScene" uid="uid://banrh0tolqcfh" path="res://scenes/control_room.tscn" id="3_aqk2v"]
 [ext_resource type="Texture2D" uid="uid://0odt7cvj574e" path="res://models/Textures/colormap.png" id="3_tlwt5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwbse"]
@@ -16,12 +17,8 @@ sky = SubResource("Sky_pkg7o")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wse8f"]
-resource_local_to_scene = true
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_ic0uy"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_wse8f")
 size = Vector2(200, 200)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k3n1d"]
@@ -544,7 +541,7 @@ _data = {
 &"walk": SubResource("Animation_tqijg")
 }
 
-[node name="Node3D" type="Node3D"]
+[node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gbfbk")
@@ -561,12 +558,19 @@ mesh = SubResource("PlaneMesh_ic0uy")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_k3n1d")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="Camera1" type="SubViewport" parent="."]
 handle_input_locally = false
 render_target_update_mode = 4
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.3228, 27.674, 0)
+[node name="Camera3D" type="Camera3D" parent="Camera1"]
+transform = Transform3D(-0.998392, 0.00415655, 0.0565416, 0, 0.997309, -0.0733154, -0.0566942, -0.0731974, -0.995705, -0.220683, 0.418874, -1.50427)
+
+[node name="Camera2" type="SubViewport" parent="."]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Camera2"]
+transform = Transform3D(-0.0479771, -0.0791607, 0.995707, 0, 0.996855, 0.0792519, -0.998848, 0.00380228, -0.0478262, 2.46576, 0.59515, 0.166247)
 
 [node name="Character" type="CharacterBody3D" parent="." node_paths=PackedStringArray("view")]
 script = ExtResource("3_036b0")
@@ -619,5 +623,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_gatpn")
 }
 
-[node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+[node name="MainCamera" type="Camera3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(0.99999, 0.000497941, -0.00433969, 0, 0.993482, 0.113993, 0.00436816, -0.113992, 0.993472, 14.2528, 0.53884, -5.19791)
+visible = false
+
+[node name="ControlRoom" parent="." node_paths=PackedStringArray("cameras") instance=ExtResource("3_aqk2v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6746, 1, -4.96754)
+cameras = [NodePath("../Camera1"), NodePath("../Camera2")]
