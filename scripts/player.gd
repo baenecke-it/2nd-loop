@@ -51,7 +51,7 @@ func _physics_process(delta):
 	# Rotation
 
 	if abs(movement_direction) > 0:
-		rotation.y = lerp_angle(rotation.y, rotation.y + movement_direction * 0.2, delta * 10)
+		rotation.y = lerp_angle(rotation.y, rotation.y + movement_direction * 0.2, delta * 5)
 
 	# Falling/respawning
 

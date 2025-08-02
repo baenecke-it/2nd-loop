@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://fqfc0dtl2xlc"
-path="res://.godot/imported/platform-grass-large-round.glb-1baa8c47f88d676b171370cee4874a31.scn"
+uid="uid://pmhsdxh6a822"
+path="res://.godot/imported/door.gltf-4262aa4b0f55f8121942dff51f020e9b.scn"
 
 [deps]
 
-source_file="res://models/platform-grass-large-round.glb"
-dest_files=["res://.godot/imported/platform-grass-large-round.glb-1baa8c47f88d676b171370cee4874a31.scn"]
+source_file="res://models/levels/door.gltf"
+dest_files=["res://.godot/imported/door.gltf-4262aa4b0f55f8121942dff51f020e9b.scn"]
 
 [params]
 
-nodes/root_type="Node3D"
-nodes/root_name="Scene Root"
+nodes/root_type=""
+nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 nodes/import_as_skeleton_bones=false
@@ -33,5 +33,5 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-gltf/naming_version=0
-gltf/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=0

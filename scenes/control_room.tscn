@@ -1,7 +1,8 @@
-[gd_scene load_steps=19 format=4 uid="uid://banrh0tolqcfh"]
+[gd_scene load_steps=20 format=4 uid="uid://banrh0tolqcfh"]
 
 [ext_resource type="Script" uid="uid://dg4f4k1bhfpgw" path="res://scripts/control_room.gd" id="1_7gisd"]
 [ext_resource type="Script" uid="uid://bop7rjg20kuu8" path="res://scripts/tv.gd" id="2_7gisd"]
+[ext_resource type="Script" uid="uid://b5uns8uehurp2" path="res://scripts/main_camera.gd" id="3_cpm0g"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_oeuj7"]
 flip_faces = true
@@ -305,6 +306,7 @@ shape = SubResource("ConcavePolygonShape3D_qjxwj")
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57442, -0.540585, -0.359797)
 current = true
+script = ExtResource("3_cpm0g")
 
 [connection signal="input_event" from="TVs/TV/StaticBody3D" to="TVs/TV" method="on_click"]
 [connection signal="input_event" from="TVs/TV2/StaticBody3D" to="TVs/TV2" method="on_click"]

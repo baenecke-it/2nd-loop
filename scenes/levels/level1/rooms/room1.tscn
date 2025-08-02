@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsdgvap2wdbbv"]
+
+[ext_resource type="Script" uid="uid://l1ygvko3ctki" path="res://scripts/room.gd" id="1_upnxu"]
+[ext_resource type="PackedScene" uid="uid://df52fbb6adncg" path="res://models/levels/floor-square.gltf" id="3_18xfn"]
+[ext_resource type="PackedScene" uid="uid://cd47lp6obs43q" path="res://models/levels/wall-doorway.gltf" id="3_upnxu"]
+[ext_resource type="PackedScene" uid="uid://pmhsdxh6a822" path="res://models/levels/door.gltf" id="4_18xfn"]
+[ext_resource type="Script" uid="uid://bahq7bapnrw0t" path="res://scripts/door.gd" id="5_chhod"]
+
+[node name="Room1" type="Node3D"]
+script = ExtResource("1_upnxu")
+
+[node name="floor-square" parent="." instance=ExtResource("3_18xfn")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 5, 0, 5)
+
+[node name="Door" type="Node3D" parent="."]
+
+[node name="door" parent="Door" instance=ExtResource("4_18xfn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+script = ExtResource("5_chhod")
+
+[node name="wall-doorway" parent="Door" instance=ExtResource("3_upnxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="SubViewport" type="SubViewport" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport"]
+transform = Transform3D(-0.675591, 0.227277, -0.701372, 0, 0.9513, 0.308265, 0.737277, 0.208261, -0.64269, -1.92562, 2.11611, -0.610655)
