@@ -304,9 +304,21 @@ shape = SubResource("ConcavePolygonShape3D_qjxwj")
 
 [node name="MainCamera" type="Camera3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.57442, -0.540585, -0.359797)
+transform = Transform3D(1, 0, 0, 0, 0.973111, 0.230338, 0, -0.230338, 0.973111, -0.57442, -0.465399, -0.313356)
 current = true
 script = ExtResource("3_cpm0g")
+
+[node name="Label3D" type="Label3D" parent="MainCamera"]
+transform = Transform3D(0.999763, 0.0150012, -0.0157828, -1.39698e-09, 0.724826, 0.688932, 0.0217745, -0.688768, 0.724655, -0.146104, -0.168832, -0.394737)
+pixel_size = 0.0004
+billboard = 1
+no_depth_test = true
+text = "- Use WASD to move the Robot
+- Walk on the Button to Rotate the Room
+- Click a TV with your Mouse to look at it (ESC resets the View)
+- Rotate the Door to the other Room and walk through
+(The Cameras rotate with the Rooms)"
+horizontal_alignment = 0
 
 [connection signal="input_event" from="TVs/TV/StaticBody3D" to="TVs/TV" method="on_click"]
 [connection signal="input_event" from="TVs/TV2/StaticBody3D" to="TVs/TV2" method="on_click"]

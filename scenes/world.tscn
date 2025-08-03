@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://qwb5yp3k3mta"]
+[gd_scene load_steps=9 format=3 uid="uid://qwb5yp3k3mta"]
 
 [ext_resource type="PackedScene" uid="uid://dq3g88mqeh0dd" path="res://scenes/character.tscn" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://banrh0tolqcfh" path="res://scenes/control_room.tscn" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://bsdgvap2wdbbv" path="res://scenes/levels/level1/rooms/room1.tscn" id="3_k0juu"]
 [ext_resource type="Script" uid="uid://cavhdqbfffkd" path="res://scripts/level.gd" id="4_k0juu"]
+[ext_resource type="PackedScene" uid="uid://tukt4pgii0bt" path="res://scenes/levels/level1/rooms/room2.tscn" id="5_71j4m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwbse"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -18,13 +19,6 @@ sky = SubResource("Sky_pkg7o")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ic0uy"]
-resource_local_to_scene = true
-size = Vector2(200, 200)
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_k3n1d"]
-data = PackedVector3Array(100, 0, 100, -100, 0, 100, 100, 0, -100, -100, 0, 100, -100, 0, -100, 100, 0, -100)
-
 [node name="World" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -34,39 +28,20 @@ environment = SubResource("Environment_gbfbk")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
-mesh = SubResource("PlaneMesh_ic0uy")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_k3n1d")
-
 [node name="Character" parent="." instance=ExtResource("1_4wyf3")]
 unique_name_in_owner = true
-
-[node name="Camera2" type="SubViewport" parent="."]
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="Camera2"]
-transform = Transform3D(-0.889017, -0.0362875, 0.456435, -6.89087e-11, 0.996855, 0.079252, -0.457875, 0.0704564, -0.88622, 8.83352, 0.59515, 0.166247)
-
-[node name="Camera1" type="SubViewport" parent="."]
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="Camera1"]
-transform = Transform3D(-0.998392, 0.00415655, 0.0565416, 0, 0.997309, -0.0733154, -0.0566942, -0.0731974, -0.995705, -0.220683, 0.418874, -1.50427)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 4, 0, 0)
 
 [node name="ControlRoom" parent="." node_paths=PackedStringArray("rooms") instance=ExtResource("3_71j4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6746, 1, -4.96754)
-rooms = [NodePath("../Room1"), NodePath("../Room1")]
-
-[node name="Room1" parent="." instance=ExtResource("3_k0juu")]
+rooms = [NodePath("../Level/Room1"), NodePath("../Level/Room2")]
 
 [node name="Level" type="Node3D" parent="."]
 script = ExtResource("4_k0juu")
 startPoint = Vector3(5, 0, 0)
 levelFile = "res://scenes/levels/level1.json"
+
+[node name="Room1" parent="Level" instance=ExtResource("3_k0juu")]
+
+[node name="Room2" parent="Level" instance=ExtResource("5_71j4m")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -10.0011, -0.0104713, -0.0166907)
