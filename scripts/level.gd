@@ -3,6 +3,7 @@ extends Node3D
 @export var startPoint: Vector3
 @export_range(2, 10, 1) var size: float = 2
 @export var levelFile: String = ""  # Path to the level data file
+@export var controlRoom: Node3D  # Reference to the control room node
 
 const room_size: float = 10.0  # Size of each room
 
@@ -48,6 +49,11 @@ func _ready() -> void:
 			var room_instance: Node3D = load(room_scene).instantiate()
 			room_instance.position = startPoint + room_data["position"]
 			room_instance.rotation_degrees.y = room_data["rotation"]
+			# Move Camera3D to the center of the room
+			var camera: Camera3D = room_instance.get_node("SubViewport/Camera3D")
+			camera.position = room_data["position"] + Vector3(5, 2, 5)
+			camera.look_at(Vector3(0, 0, 0), Vector3.UP)
+			controlRoom.add_room(room_instance)
 			add_child(room_instance)
 
 func generate_level(size: float) -> Array:
