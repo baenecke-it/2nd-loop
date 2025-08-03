@@ -10,9 +10,10 @@
 script = ExtResource("1_upnxu")
 
 [node name="floor-square" parent="." instance=ExtResource("3_18xfn")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 5, 0, 5)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="Door" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 
 [node name="door" parent="Door" instance=ExtResource("4_18xfn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
