@@ -520,7 +520,7 @@ _data = {
 &"walk": SubResource("Animation_tqijg")
 }
 
-[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("view")]
+[node name="Character" type="CharacterBody3D" node_paths=PackedStringArray("view") groups=["char"]]
 script = ExtResource("1_rkhd4")
 view = NodePath(".")
 

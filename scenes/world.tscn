@@ -43,6 +43,7 @@ mesh = SubResource("PlaneMesh_ic0uy")
 shape = SubResource("ConcavePolygonShape3D_k3n1d")
 
 [node name="Character" parent="." instance=ExtResource("1_4wyf3")]
+unique_name_in_owner = true
 
 [node name="Camera2" type="SubViewport" parent="."]
 handle_input_locally = false

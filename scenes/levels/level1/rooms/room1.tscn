@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsdgvap2wdbbv"]
+[gd_scene load_steps=7 format=3 uid="uid://bsdgvap2wdbbv"]
 
 [ext_resource type="Script" uid="uid://l1ygvko3ctki" path="res://scripts/room.gd" id="1_upnxu"]
 [ext_resource type="PackedScene" uid="uid://df52fbb6adncg" path="res://models/levels/floor-square.gltf" id="3_18xfn"]
 [ext_resource type="PackedScene" uid="uid://cd47lp6obs43q" path="res://models/levels/wall-doorway.gltf" id="3_upnxu"]
 [ext_resource type="PackedScene" uid="uid://pmhsdxh6a822" path="res://models/levels/door.gltf" id="4_18xfn"]
 [ext_resource type="Script" uid="uid://bahq7bapnrw0t" path="res://scripts/door.gd" id="5_chhod"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dw044"]
+size = Vector3(10, 10, 10)
 
 [node name="Room1" type="Node3D"]
 script = ExtResource("1_upnxu")
@@ -26,3 +29,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
 transform = Transform3D(-0.675591, 0.227277, -0.701372, 0, 0.9513, 0.308265, 0.737277, 0.208261, -0.64269, -1.92562, 2.11611, -0.610655)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_dw044")
+
+[connection signal="body_shape_entered" from="Area3D" to="." method="toggle_inside"]
+[connection signal="body_shape_exited" from="Area3D" to="." method="toggle_inside"]
