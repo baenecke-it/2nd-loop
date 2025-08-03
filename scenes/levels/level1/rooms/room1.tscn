@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bsdgvap2wdbbv"]
+[gd_scene load_steps=9 format=3 uid="uid://bsdgvap2wdbbv"]
 
 [ext_resource type="Script" uid="uid://l1ygvko3ctki" path="res://scripts/room.gd" id="1_upnxu"]
 [ext_resource type="PackedScene" uid="uid://df52fbb6adncg" path="res://models/levels/floor-square.gltf" id="3_18xfn"]
 [ext_resource type="PackedScene" uid="uid://cd47lp6obs43q" path="res://models/levels/wall-doorway.gltf" id="3_upnxu"]
 [ext_resource type="PackedScene" uid="uid://pmhsdxh6a822" path="res://models/levels/door.gltf" id="4_18xfn"]
 [ext_resource type="Script" uid="uid://bahq7bapnrw0t" path="res://scripts/door.gd" id="5_chhod"]
+[ext_resource type="PackedScene" uid="uid://dl4ggud4yn7tx" path="res://scenes/lever.tscn" id="6_bxiy3"]
+[ext_resource type="PackedScene" uid="uid://5r60gt1rq8f5" path="res://scenes/button.tscn" id="7_upnxu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dw044"]
 size = Vector3(10, 10, 10)
@@ -34,6 +36,14 @@ transform = Transform3D(-0.675591, 0.227277, -0.701372, 0, 0.9513, 0.308265, 0.7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_dw044")
+
+[node name="lever" parent="." node_paths=PackedStringArray("connectedRoom") instance=ExtResource("6_bxiy3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+connectedRoom = NodePath("..")
+
+[node name="button" parent="." node_paths=PackedStringArray("connectedRoom") instance=ExtResource("7_upnxu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.14583, 0, 2.5026)
+connectedRoom = NodePath("..")
 
 [connection signal="body_shape_entered" from="Area3D" to="." method="toggle_inside"]
 [connection signal="body_shape_exited" from="Area3D" to="." method="toggle_inside"]
