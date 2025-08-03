@@ -59,8 +59,8 @@ render_target_update_mode = 4
 [node name="Camera3D" type="Camera3D" parent="Camera1"]
 transform = Transform3D(-0.998392, 0.00415655, 0.0565416, 0, 0.997309, -0.0733154, -0.0566942, -0.0731974, -0.995705, -0.220683, 0.418874, -1.50427)
 
-[node name="ControlRoom" parent="." node_paths=PackedStringArray("cameras") instance=ExtResource("3_71j4m")]
+[node name="ControlRoom" parent="." node_paths=PackedStringArray("rooms") instance=ExtResource("3_71j4m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6746, 1, -4.96754)
-cameras = [NodePath("../Camera2"), NodePath("../Camera1")]
+rooms = [NodePath("../Room1"), NodePath("../Room1")]
 
 [node name="Room1" parent="." instance=ExtResource("3_k0juu")]
