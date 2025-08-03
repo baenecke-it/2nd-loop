@@ -1,0 +1,22 @@
+[
+  {
+	"position": [5.0, 0.0, 0.0],
+	"type": "1",
+	"rotation": 270.0
+  },
+  {
+	"position": [5, 0, 10],
+	"type": "L",
+	"rotation": 90.0
+  },
+  {
+	"position": [15, 0, 0],
+	"type": "L",
+	"rotation": 180.0
+  },
+  {
+	"position": [15, 0, 10],
+	"type": "L",
+	"rotation": 90.0
+  }
+]

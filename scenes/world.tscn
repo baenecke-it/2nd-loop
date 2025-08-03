@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://qwb5yp3k3mta"]
+[gd_scene load_steps=10 format=3 uid="uid://qwb5yp3k3mta"]
 
 [ext_resource type="PackedScene" uid="uid://dq3g88mqeh0dd" path="res://scenes/character.tscn" id="1_4wyf3"]
 [ext_resource type="PackedScene" uid="uid://banrh0tolqcfh" path="res://scenes/control_room.tscn" id="3_71j4m"]
 [ext_resource type="PackedScene" uid="uid://bsdgvap2wdbbv" path="res://scenes/levels/level1/rooms/room1.tscn" id="3_k0juu"]
+[ext_resource type="Script" uid="uid://cavhdqbfffkd" path="res://scripts/level.gd" id="4_k0juu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dwbse"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -64,3 +65,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.6746, 1, -4.96754)
 rooms = [NodePath("../Room1"), NodePath("../Room1")]
 
 [node name="Room1" parent="." instance=ExtResource("3_k0juu")]
+
+[node name="Level" type="Node3D" parent="."]
+script = ExtResource("4_k0juu")
+startPoint = Vector3(5, 0, 0)
+levelFile = "res://scenes/levels/level1.json"
